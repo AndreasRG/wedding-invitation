@@ -1,0 +1,130 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(248, 248, 248);
+  overflow: hidden;
+}
+
+
+.folder {
+  position: relative;
+  width: min(100vw, calc(100vh * (1920 / 1080))); /* ✅ Shrink width if height is limiting */
+  height: auto;                                   /* ✅ Let height follow aspect ratio */
+  aspect-ratio: 1920 / 1080;                      /* ✅ Maintain proportions */
+  perspective: 2000px;
+  cursor: pointer;
+  overflow: visible;
+}
+
+
+
+
+
+
+
+
+/* Outer covers */
+.cover {
+  position: absolute;
+  width: 25%;                          /* ✅ Each cover is 25% of full folder width */
+  height: 100%;
+  background-image: url('Udenvendig invitation V1.png');
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  transition: transform 1s ease;
+  z-index: 3;
+  transform-style: preserve-3d;
+}
+
+
+.cover.left {
+  left: 0;
+  transform-origin: left;
+  transform: translateX(100%) rotateY(0deg); /* ✅ Shift inward by 25% */
+  background-position: left center;
+}
+
+.cover.right {
+  right: 0;
+  transform-origin: right;
+  transform: translateX(-100%) rotateY(0deg); /* ✅ Shift inward by 25% */
+  background-position: right center;
+}
+
+
+/* Inside faces of covers */
+.inside {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-image: url('Indenvendig invitation V1.png');
+  background-size: 400% 100%; /* ✅ Stretch image to 4x width */
+  background-repeat: no-repeat;
+}
+
+.left-inside {
+  background-position: 0% center;     /* ✅ First 25% of image */
+  transform: rotateY(180deg);
+}
+
+.right-inside {
+  background-position: 100% center;   /* ✅ Last 25% of image */
+  transform: rotateY(180deg);
+}
+
+
+
+/* Inner full image */
+.inner {
+  position: absolute;
+  top: 0;
+  left: 25%;                            /* ✅ Center the middle 960px inside 1920px */
+  width: 50%;                           /* ✅ 960px of 1920px */
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+
+.inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.folder.open .cover.left {
+  transform: translateX(100%) rotateY(-180deg); /* ✅ Maintain inward shift */
+}
+
+.folder.open .cover.right {
+  transform: translateX(-100%) rotateY(180deg); /* ✅ Maintain inward shift */
+}
+
+
+.folder.open .inner {
+  opacity: 1;
+  z-index: 2;
+}
+
+.inner-crop {
+  width: 100%;
+  height: 100%;
+  background-image: url('Indenvendig invitation V1.png');
+  background-size: 200% 100%;           /* ✅ Stretch to 1920px inside 960px container */
+  background-position: center center;   /* ✅ Show middle 960px */
+  background-repeat: no-repeat;
+}
+
+
