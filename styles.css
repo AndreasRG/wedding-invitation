@@ -68,7 +68,7 @@ html, body {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background-image: url('Indenvendig invitation V1.png');
+  background-image: url('DANISH\ INVITATION.png');
   background-size: 400% 100%; /* ✅ Stretch image to 4x width */
   background-repeat: no-repeat;
 }
@@ -121,10 +121,71 @@ html, body {
 .inner-crop {
   width: 100%;
   height: 100%;
-  background-image: url('Indenvendig invitation V1.png');
+  background-image: url('DANISH\ INVITATION.png');
   background-size: 200% 100%;           /* ✅ Stretch to 1920px inside 960px container */
   background-position: center center;   /* ✅ Show middle 960px */
   background-repeat: no-repeat;
 }
 
+
+.language-selector {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* ✅ Center both vertically and horizontally */
+  z-index: 10;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  max-height: 50vh; /* ✅ Limit total row height */
+}
+
+.language-selector button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  height: auto;
+  max-height: 100%;
+}
+
+.language-selector img {
+  display: block;
+  max-height: 100%;       /* ✅ Fill button height */
+  height: auto;
+  width: auto;
+  max-width: 20vw;         /* ✅ Prevent flags from being too wide */
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.language-selector img:hover {
+  opacity: 0.6;            /* ✅ Hover effect */
+}
+
+
+
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.folder.hidden {
+  display: none;
+  opacity: 0;
+}
+
+.folder.visible {
+  display: block;
+  animation: fadeIn 0.8s ease forwards;
+}
 
